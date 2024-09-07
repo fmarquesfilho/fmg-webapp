@@ -1,4 +1,4 @@
-name: Deploy to Staging Please
+name: Deploy to Staging Per piacere
 
 on:
   push:
