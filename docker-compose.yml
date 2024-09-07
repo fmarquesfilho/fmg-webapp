@@ -56,7 +56,7 @@ services:
         INSTALL_DEV: ${INSTALL_DEV-false}
     platform: linux/amd64 # Patch for M1 Mac
     ports:
-      - "80:80"  # Map backend port 80 to 80 on localhost
+      - "80:8000"  # Map backend port 80 to 8000 on localhost
 
   frontend:
     image: '${DOCKER_IMAGE_FRONTEND?Variable not set}:${TAG-latest}'
@@ -66,10 +66,10 @@ services:
     build:
       context: ./frontend
       args:
-        - VITE_API_URL=https://${DOMAIN?Variable not set}:3000
+        - VITE_API_URL=https://${DOMAIN?Variable not set}
         - NODE_ENV=production
     ports:
-      - "80:3000"  # Map frontend port 80 to 3000 on localhost
+      - "80:80"  # Map frontend port 80 to 3000 on localhost
 
 volumes:
   app-db-data:
