@@ -69,7 +69,7 @@ services:
         - VITE_API_URL=https://${DOMAIN?Variable not set}
         - NODE_ENV=production
     ports:
-      - "3000:80"  # Map frontend port 80 to 3000 on localhost
+      - "80:80"  # Map frontend port 80 to 3000 on localhost
 
 volumes:
   app-db-data:
