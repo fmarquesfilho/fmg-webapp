@@ -22,8 +22,8 @@ services:
       - db
     environment:
       - ADMINER_DESIGN=pepa-linha-dark
-    #ports:
-    #  - "8080:8080"  # Map port 8080 for Adminer access
+    ports:
+      - "8080:8080"  # Map port 8080 for Adminer access
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
@@ -69,8 +69,8 @@ services:
       args:
         INSTALL_DEV: ${INSTALL_DEV-false}
     platform: linux/amd64 # Patch for M1 Mac
-    #ports:
-    #  - "8000:80"  # Map backend port 80 to 8000 on localhost
+    ports:
+      - "8000:80"  # Map backend port 80 to 8000 on localhost
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
@@ -104,10 +104,10 @@ services:
     build:
       context: ./frontend
       args:
-        - VITE_API_URL=https://${DOMAIN?Variable not set}
+        - VITE_API_URL=https://localhost:8000
         - NODE_ENV=production
-    #ports:
-    #  - "3000:80"  # Map frontend port 80 to 3000 on localhost
+    ports:
+      - "80:80"  # Map frontend port 80 to 3000 on localhost
     labels:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
@@ -133,4 +133,4 @@ volumes:
 networks:
   traefik-public:
     # Allow setting it to false for testing
-    external: true
+    external: false
