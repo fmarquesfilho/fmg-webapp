@@ -5,7 +5,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - "80:80"
+      #- "80:80"
       - "8090:8080"
     # Duplicate the command from docker-compose.yml to add --api.insecure=true
     command:
@@ -76,6 +76,8 @@ services:
 
   frontend:
     restart: "no"
+    ports:
+      - "80:80"
     build:
       context: ./frontend
       args:
